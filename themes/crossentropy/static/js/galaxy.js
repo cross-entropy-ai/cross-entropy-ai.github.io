@@ -114,6 +114,7 @@
   }
 
   var clock = new THREE.Clock();
+  var firstFrame = true;
 
   function animate() {
     requestAnimationFrame(animate);
@@ -128,6 +129,11 @@
     }
 
     renderer.render(scene, camera);
+
+    if (firstFrame) {
+      firstFrame = false;
+      document.getElementById('galaxy-canvas').classList.add('ready');
+    }
   }
 
   init();
