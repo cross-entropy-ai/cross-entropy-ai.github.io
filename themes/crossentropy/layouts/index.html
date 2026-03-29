@@ -38,6 +38,15 @@
     pointer-events: none;
   }
 
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 3rem;
+    border-radius: 12px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+  }
+
   .hero-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 300;
@@ -45,11 +54,11 @@
     font-size: clamp(2.4rem, 10vw, 120px);
     line-height: 1;
     text-align: center;
-    padding: 0 2rem;
     letter-spacing: 0.02em;
     opacity: 0;
     animation: heroFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     text-shadow:
+      0 0 40px rgba(0, 0, 0, 0.6),
       0 0 80px rgba(255, 96, 48, 0.15),
       0 0 160px rgba(27, 57, 132, 0.1);
   }
@@ -58,7 +67,7 @@
     font-family: 'Outfit', sans-serif;
     font-weight: 300;
     font-size: clamp(12px, 1.4vw, 16px);
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.25em;
     text-transform: uppercase;
     margin-top: 1.6rem;
@@ -79,7 +88,7 @@
     font-family: 'Outfit', sans-serif;
     font-size: 13px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -154,12 +163,14 @@
 <canvas id="galaxy-canvas"></canvas>
 <div class="vignette"></div>
 <div class="hero-overlay">
-  <div class="hero-title">Cross-entropy AI</div>
-  <div class="hero-tagline">Reforge the future of AI</div>
-  <nav class="hero-nav">
-    <a href="{{ "posts/" | relURL }}">Blog</a>
-    <a href="https://github.com/cross-entropy-ai" target="_blank" rel="noopener">GitHub</a>
-  </nav>
+  <div class="hero-content">
+    <div class="hero-title">Cross-entropy AI</div>
+    <div class="hero-tagline">Reforge the future of AI</div>
+    <nav class="hero-nav">
+      <a href="{{ "posts/" | relURL }}">Blog</a>
+      <a href="https://github.com/cross-entropy-ai" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
 </div>
 <div class="hero-bottom-line">
   <div class="scroll-line"></div>
