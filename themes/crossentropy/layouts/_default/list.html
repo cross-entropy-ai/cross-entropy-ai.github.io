@@ -1,13 +1,6 @@
 {{ define "main" }}
 <div class="blog-wrapper">
-  <header class="blog-header">
-    <a href="{{ "/" | relURL }}" class="blog-logo">Cross-entropy AI</a>
-    <nav class="blog-nav">
-      <a href="{{ "posts/" | relURL }}">Blog</a>
-      <a href="https://github.com/cross-entropy-ai" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </header>
-  <div class="header-rule"><span></span></div>
+  {{ partial "blog-header.html" . }}
   <main class="blog-main">
     <h1 class="page-title anim-fade" style="--delay: 0">{{ .Title | default "Blog" }}</h1>
     {{ $pages := .Pages.ByDate.Reverse }}
@@ -19,7 +12,7 @@
           <time class="post-date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2, 2006" }}</time>
           <h2 class="post-title"><a href="{{ $p.Permalink }}">{{ $p.Title }}</a></h2>
           {{ if $p.Params.author }}<span class="post-author">{{ $p.Params.author }}</span>{{ end }}
-          <p class="post-summary">{{ $p.Summary }}</p>
+          {{ with $p.Params.summary }}<p class="post-summary">{{ . }}</p>{{ else }}<p class="post-summary">{{ $p.Summary | plainify | truncate 200 }}</p>{{ end }}
           {{ with $p.Params.tags }}
           <div class="post-tags">
             {{ range . }}<a href="{{ (urls.Parse (printf "tags/%s/" .)).Path | relURL }}">#{{ . }}</a>{{ end }}
@@ -30,9 +23,6 @@
     </article>
     {{ end }}
   </main>
-  <footer class="blog-footer">
-    <div class="footer-rule"><span></span></div>
-    <p>&copy; {{ now.Year }} Cross-entropy AI</p>
-  </footer>
+  {{ partial "blog-footer.html" . }}
 </div>
 {{ end }}

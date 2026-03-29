@@ -1,13 +1,6 @@
 {{ define "main" }}
 <div class="blog-wrapper">
-  <header class="blog-header">
-    <a href="{{ "/" | relURL }}" class="blog-logo">Cross-entropy AI</a>
-    <nav class="blog-nav">
-      <a href="{{ "posts/" | relURL }}">Blog</a>
-      <a href="https://github.com/cross-entropy-ai" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </header>
-  <div class="header-rule"><span></span></div>
+  {{ partial "blog-header.html" . }}
   <main class="blog-main">
     <article class="post-single">
       <header class="post-header anim-fade" style="--delay: 0">
@@ -34,9 +27,6 @@
       {{ with .NextInSection }}<a href="{{ .Permalink }}" class="next">{{ .Title }} &rarr;</a>{{ end }}
     </nav>
   </main>
-  <footer class="blog-footer">
-    <div class="footer-rule"><span></span></div>
-    <p>&copy; {{ now.Year }} Cross-entropy AI</p>
-  </footer>
+  {{ partial "blog-footer.html" . }}
 </div>
 {{ end }}

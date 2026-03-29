@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var scene, camera, renderer, points, bloomComposer;
+  var scene, camera, renderer, points;
   var mouse = { x: 0, y: 0 };
   var mouseTarget = { x: 0, y: 0 };
 
@@ -11,6 +11,7 @@
   var RANDOMNESS_POWER = 4;
   var INNER_COLOR = new THREE.Color('#ff6030');
   var OUTER_COLOR = new THREE.Color('#1b3984');
+  var tempColor = new THREE.Color();
 
   function generateCircleTexture() {
     var size = 32;
@@ -54,8 +55,7 @@
       positions[i3 + 1] = randomY;
       positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * particleRadius + randomZ;
 
-      var mixedColor = INNER_COLOR.clone();
-      mixedColor.lerp(OUTER_COLOR, Math.pow(particleRadius / RADIUS, 0.75));
+      var mixedColor = tempColor.copy(INNER_COLOR).lerp(OUTER_COLOR, Math.pow(particleRadius / RADIUS, 0.75));
 
       colors[i3] = mixedColor.r;
       colors[i3 + 1] = mixedColor.g;
@@ -124,8 +124,7 @@
 
     if (points) {
       points.rotation.x = mouse.y * 0.01;
-      points.rotation.y += delta * 0.02;
-      points.rotation.y += mouse.x * delta * 0.05;
+      points.rotation.y += delta * (0.02 + mouse.x * 0.05);
     }
 
     renderer.render(scene, camera);
