@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="blog-wrapper">
+  <header class="blog-header">
+    <a href="{{ "/" | relURL }}" class="blog-logo">Cross-entropy AI</a>
+    <nav class="blog-nav">
+      <a href="{{ "posts/" | relURL }}">Blog</a>
+      <a href="https://github.com/cross-entropy-ai" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+  <div class="header-rule"><span></span></div>
+  <main class="blog-main">
+    <article class="post-single">
+      <header class="post-header anim-fade" style="--delay: 0">
+        <h1>{{ .Title }}</h1>
+        <div class="post-meta">
+          {{ if .Params.author }}<span>{{ .Params.author }}</span> · {{ end }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          {{ if ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02") }}
+           · Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "Jan 2, 2006" }}</time>
+          {{ end }}
+        </div>
+        {{ with .Params.tags }}
+        <div class="post-tags">
+          {{ range . }}<a href="{{ (urls.Parse (printf "tags/%s/" .)).Path | relURL }}">#{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+      </header>
+      <div class="post-content anim-fade" style="--delay: 1">
+        {{ .Content }}
+      </div>
+    </article>
+    <nav class="post-nav anim-fade" style="--delay: 2">
+      {{ with .PrevInSection }}<a href="{{ .Permalink }}" class="prev">&larr; {{ .Title }}</a>{{ end }}
+      {{ with .NextInSection }}<a href="{{ .Permalink }}" class="next">{{ .Title }} &rarr;</a>{{ end }}
+    </nav>
+  </main>
+  <footer class="blog-footer">
+    <div class="footer-rule"><span></span></div>
+    <p>&copy; {{ now.Year }} Cross-entropy AI</p>
+  </footer>
+</div>
+{{ end }}

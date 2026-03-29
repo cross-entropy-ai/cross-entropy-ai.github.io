@@ -1,0 +1,168 @@
+{{ define "head" }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #galaxy-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Vignette overlay for depth */
+  .vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 80% 80% at 50% 50%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  /* Hero content */
+  .hero-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    color: #fff;
+    font-size: clamp(2.4rem, 10vw, 120px);
+    line-height: 1;
+    text-align: center;
+    padding: 0 2rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: heroFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    text-shadow:
+      0 0 80px rgba(255, 96, 48, 0.15),
+      0 0 160px rgba(27, 57, 132, 0.1);
+  }
+
+  .hero-tagline {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: clamp(12px, 1.4vw, 16px);
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 1.6rem;
+    opacity: 0;
+    animation: heroFadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+  }
+
+  .hero-nav {
+    margin-top: 3rem;
+    display: flex;
+    gap: 3rem;
+    pointer-events: auto;
+    opacity: 0;
+    animation: heroFadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+  }
+
+  .hero-nav a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .hero-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(-50%);
+  }
+
+  .hero-nav a:hover {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  }
+
+  .hero-nav a:hover::after {
+    width: 100%;
+  }
+
+  /* Bottom decorative line */
+  .hero-bottom-line {
+    position: fixed;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0;
+    animation: heroFadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+    pointer-events: none;
+  }
+
+  .hero-bottom-line .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<canvas id="galaxy-canvas"></canvas>
+<div class="vignette"></div>
+<div class="hero-overlay">
+  <div class="hero-title">Cross-entropy AI</div>
+  <div class="hero-tagline">Reforge the future of AI</div>
+  <nav class="hero-nav">
+    <a href="{{ "posts/" | relURL }}">Blog</a>
+    <a href="https://github.com/cross-entropy-ai" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</div>
+<div class="hero-bottom-line">
+  <div class="scroll-line"></div>
+</div>
+<script src="{{ "js/galaxy.js" | relURL }}"></script>
+{{ end }}
