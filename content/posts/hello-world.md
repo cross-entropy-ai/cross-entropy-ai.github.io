@@ -1,6 +1,6 @@
 ---
 title: "Introducing Cross-entropy AI"
-date: 2026-03-29
+date: 2026-03-26
 author: "Cross-entropy AI"
 tags: ["announcement", "philosophy", "AI"]
 summary: "Cross-entropy AI is a non-profit organisation founded in Singapore, dedicated to advancing AI research, education, and philosophical inquiry — openly and accessibly."
