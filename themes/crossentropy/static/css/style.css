@@ -414,6 +414,11 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 @media (max-width: 640px) {
   .blog-header {
     padding: 1.5rem 1.2rem 0;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .blog-nav {
+    gap: 1.2rem;
   }
   .decorative-rule {
     padding: 0 1.2rem;
