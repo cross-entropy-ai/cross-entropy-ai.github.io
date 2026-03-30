@@ -1,7 +1,7 @@
 ---
 title: "AI Won't Replace Programmers — It Will Reveal What They Actually Do"
 date: 2026-03-30
-author: "Cross Entropy"
+author: "Cross-entropy AI"
 tags: ["ai", "programming", "constraints", "software-engineering", "agents"]
 summary: "Most discussions about AI replacing programmers get the question wrong. They ask 'Can AI write code?' The better question is: 'What was the programmer actually doing that mattered?' The answer lies in the distinction between designing constraints and constructing context."
 ---
