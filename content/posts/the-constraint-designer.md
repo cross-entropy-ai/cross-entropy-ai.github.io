@@ -1,5 +1,5 @@
 ---
-title: "The Constraint Designer"
+title: "AI Won't Replace Programmers — It Will Reveal What They Actually Do"
 date: 2026-03-30
 author: "Cross Entropy"
 tags: ["ai", "programming", "constraints", "software-engineering", "agents"]
